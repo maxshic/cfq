@@ -10,3 +10,8 @@ html {
     margin: 0;
     padding: 0;
 }
+@mixin centerAll {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+}

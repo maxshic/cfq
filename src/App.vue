@@ -11,7 +11,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import './scss/app';
 #app {
     position: absolute;
     font-family: "Microsoft YaHei";
@@ -22,7 +21,7 @@ export default {
     top: 0;
     left: 0;
     bottom: 0;
-    background-image: url(./assets/bg.png);
+    background-image: url(./assets/new_bg.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
