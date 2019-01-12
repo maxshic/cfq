@@ -3,9 +3,10 @@
         <div id="bimgContainer" class="img-container">
           
             <div class="img-con">
-                <img id="bshowbg" v-show="showbg" class="bg" src="../assets/main_con.png" alt="">
+                <img id="bshowbg" v-show="showbg" class="bg" src="../assets/chuiqi.png" alt="">
                 <img class="people" width="70%" src="../assets/deng.gif" alt="">
                 <p class="timer">{{time}}s</p>
+                <img class="bouble" src="../assets/bouble.gif" alt="">
                 <img class="start-bg" @touchstart="start" @touchend="end" width="30%" src="../assets/longpress.gif" alt="">
             </div>
             
@@ -96,6 +97,12 @@ export default {
                     font-style: italic;
                     text-align: center;
                     color: #2c9d46;
+                }
+                .bouble{
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
                 }
             }
             .bg{

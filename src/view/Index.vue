@@ -3,7 +3,7 @@
         <div id="imgContainer" class="img-container">
           
             <div id="imgCon" class="img-con">
-                <img id="showbg" v-show="showbg" class="bg" src="../assets/eight.png" alt="">
+                <img id="showbg" v-show="showbg" class="bg" src="../assets/changjing.png" alt="">
                 <!-- <img class="people" width="70%" src="../assets/people.png" alt=""> -->
                 <img @click="toBegin" class="start-bg" width="30%" src="../assets/start.gif" alt="">
             </div>

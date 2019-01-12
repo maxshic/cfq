@@ -3,13 +3,27 @@
         <div id="rimgContainer" class="img-container">
           
             <div class="img-con">
-                <img id="rshowbg" v-show="showbg" class="bg" src="../assets/main_con.png" alt="">
-                <img class="dai" width="50%" src="../assets/20.png" alt="">
-                <img class="start-bg" width="30%" src="../assets/longpress.gif" alt="">
-                <div class="num-con">
-                    <p class="top">清风扬的福气值为</p>
-                    <p class="bottom">点击福袋试试手气</p>
+                <img id="rshowbg" v-show="showbg" class="bg" src="../assets/jiangpin.png" alt="">
+                
+                
+                <div class="btn-group">
+                    <div><img @click="meTo" src="../assets/meTo.png" alt=""></div>
+                    <div><img src="../assets/list.png" alt=""></div>
                 </div>
+                
+                <template v-if="hasBag">
+                    <div class="num-con">
+                        <p class="top">清风扬的<span>五芳福袋</span></p>
+                        <p class="bottom">恭喜获得</p>
+                    </div>
+                    <img @click="q20" class="dai" width="55%" src="../assets/20.png" alt="">
+                </template>
+                <template v-else>
+                    <div class="nobag">
+                        <p>手速太慢</p>
+                        <p>福袋已被抢完</p>
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -20,7 +34,8 @@ export default {
     data(){
         return{
             showbg: false,
-            per: 0.532635987885885
+            per: 0.532635987885885,
+            hasBag: false,
         }
     },
     mounted(){
@@ -35,6 +50,14 @@ export default {
         }else{
             document.getElementById('rshowbg').style.width = conwidth + 'px'
             this.showbg = true
+        }
+    },
+    methods: {
+        meTo(){
+            this.$router.replace('/')
+        },
+        q20(){
+            alert(123)
         }
     }
 }
@@ -60,19 +83,24 @@ export default {
                 @include centerAll;
                 .dai{
                     position: absolute;
-                    bottom: 33%;
+                    bottom: 23%;
                     left: 50%;
                     transform: translateX(-50%);
                 }
                 .num-con{
                     width: 100%;
                     position: absolute;
-                    top: 22%;
+                    top: 28%;
                     text-align: center;
                     .top{
-                        font-size: 24px;
+                        font-size: 20px;
                         font-weight: bold;
                         font-family: '宋体';
+                        color: #010003;
+                        padding-bottom: 5px;
+                        span{
+                            color: #A13018;
+                        }
                     }
                     .middle{
                         font-size: 40px;
@@ -80,8 +108,10 @@ export default {
                         color: #2c9d46;
                     }
                     .bottom{
-                        font-size: 22px;
-                        color: #2c9d46;
+                        font-size: 24px;
+                        color: #010003;
+                        font-family: '宋体';
+                        font-weight: bold;
                     }
                 }
                 .desc{
@@ -92,6 +122,21 @@ export default {
                     font-size: 14px;
                     font-weight: bold;
                     text-align: center;
+                }
+                .btn-group{
+                    width: 70%;
+                    position: absolute;
+                    bottom: 16%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    flex-wrap: nowrap;
+                    justify-content: space-around;
+                    img{
+                        display: block;
+                        width: 94%;
+                        margin: auto;
+                    }
                 }
             }
             .bg{

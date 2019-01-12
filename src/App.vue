@@ -21,7 +21,7 @@ export default {
     top: 0;
     left: 0;
     bottom: 0;
-    background-image: url(./assets/new_bg.png);
+    background-image: url(./assets/beijing.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }

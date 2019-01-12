@@ -3,9 +3,9 @@
         <div id="rimgContainer" class="img-container">
           
             <div class="img-con">
-                <img id="rshowbg" v-show="showbg" class="bg" src="../assets/main_con.png" alt="">
-                <img class="dai" width="70%" src="../assets/dai.gif" alt="">
-                <img class="start-bg" width="30%" src="../assets/longpress.gif" alt="">
+                <img id="rshowbg" v-show="showbg" class="bg" src="../assets/jiangpin.png" alt="">
+                <img class="dai" @click="share = true" width="70%" src="../assets/dai.gif" alt="">
+                <img class="start-bg" @click="again" width="40%" src="../assets/again.png" alt="">
                 <div class="num-con">
                     <p class="top">清风扬的福气值为</p>
                     <p class="middle">99</p>
@@ -17,6 +17,9 @@
             </div>
             
         </div>
+        <div class="share-bg" v-show="share" @click="share = false">
+            <img src="../assets/share.png" width="75%" alt="">
+        </div>
     </div>
 </template>
 <script>
@@ -25,7 +28,8 @@ export default {
     data(){
         return{
             showbg: false,
-            per: 0.532635987885885
+            per: 0.532635987885885,
+            share: false,
         }
     },
     mounted(){
@@ -40,6 +44,11 @@ export default {
         }else{
             document.getElementById('rshowbg').style.width = conwidth + 'px'
             this.showbg = true
+        }
+    },
+    methods: {
+        again(){
+            this.$router.replace('/begin')
         }
     }
 }
@@ -65,14 +74,14 @@ export default {
                 @include centerAll;
                 .dai{
                     position: absolute;
-                    bottom: 33%;
+                    bottom: 25%;
                     left: 50%;
                     transform: translateX(-50%);
                 }
                 .num-con{
                     width: 100%;
                     position: absolute;
-                    top: 22%;
+                    top: 29%;
                     text-align: center;
                     .top{
                         font-size: 24px;
@@ -85,7 +94,7 @@ export default {
                         color: #2c9d46;
                     }
                     .bottom{
-                        font-size: 22px;
+                        font-size: 20px;
                         color: #2c9d46;
                     }
                 }
@@ -93,7 +102,7 @@ export default {
                     width: 100%;
                     line-height: 1.5;
                     position: absolute;
-                    bottom: 30%;
+                    bottom: 23%;
                     font-size: 14px;
                     font-weight: bold;
                     text-align: center;
@@ -108,9 +117,27 @@ export default {
             .start-bg{
                 position: absolute;
                 left: 50%;
-                bottom: 12%;
+                bottom: 13%;
                 transform: translateX(-50%);
                 z-index: 9;
+            }
+        }
+        .share-bg{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 999;
+            background: rgba($color: #000000, $alpha: 0.5);
+            img{
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
     }
