@@ -16,12 +16,22 @@
                         <p class="top">清风扬的<span>五芳福袋</span></p>
                         <p class="bottom">恭喜获得</p>
                     </div>
-                    <img @click="q20" class="dai" width="55%" src="../assets/20.png" alt="">
+                    <!-- <img @click="getBag('20')" class="dai" width="55%" src="../assets/20.png" alt=""> -->
+                    <!-- <img @click="getBag('50')" class="dai" width="55%" src="../assets/50.png" alt=""> -->
+                    <!-- <img @click="getBag('100')" class="dai" width="55%" src="../assets/100.png" alt=""> -->
+                    <!-- <img @click="getBag('139-30')" class="dai" width="55%" src="../assets/139-30.png" alt=""> -->
+                    <!-- <img @click="getBag('199-20')" class="dai" width="55%" src="../assets/199-20.png" alt=""> -->
+                    <!-- <img @click="getBag('199-50')" class="dai" width="55%" src="../assets/199-50.png" alt=""> -->
+                    <!-- <img @click="getBag('199-100')" class="dai" width="55%" src="../assets/199-100.png" alt=""> -->
+                    <!-- <img @click="getBag('299-50')" class="dai" width="55%" src="../assets/299-50.png" alt=""> -->
+                    <!-- <img @click="getBag('ds')" class="dai" width="55%" src="../assets/ds.png" alt=""> -->
+                    <img @click="getBag('xc')" class="dai" width="55%" src="../assets/xc.png" alt="">
                 </template>
                 <template v-else>
                     <div class="nobag">
                         <p>手速太慢</p>
                         <p>福袋已被抢完</p>
+                        <img width="60%" src="../assets/fortune-null.png" alt="">
                     </div>
                 </template>
             </div>
@@ -35,7 +45,7 @@ export default {
         return{
             showbg: false,
             per: 0.532635987885885,
-            hasBag: false,
+            hasBag: true,
         }
     },
     mounted(){
@@ -56,8 +66,8 @@ export default {
         meTo(){
             this.$router.replace('/')
         },
-        q20(){
-            alert(123)
+        getBag(str){
+            alert(str)
         }
     }
 }
@@ -87,28 +97,38 @@ export default {
                     left: 50%;
                     transform: translateX(-50%);
                 }
+                .nobag{
+                    position: absolute;
+                    width: 80%;
+                    top: 30%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    text-align: center;
+                    p{
+                        font-size: 20px;
+                        font-weight: bold;
+                        font-family: '宋体';
+                        color: #010003;
+                        padding-bottom: 5px;
+                    }
+                }
                 .num-con{
                     width: 100%;
                     position: absolute;
                     top: 28%;
                     text-align: center;
                     .top{
-                        font-size: 20px;
+                        font-size: 16px;
                         font-weight: bold;
                         font-family: '宋体';
                         color: #010003;
-                        padding-bottom: 5px;
+                        //padding-bottom: 2px;
                         span{
                             color: #A13018;
                         }
                     }
-                    .middle{
-                        font-size: 40px;
-                        font-weight: bold;
-                        color: #2c9d46;
-                    }
                     .bottom{
-                        font-size: 24px;
+                        font-size: 20px;
                         color: #010003;
                         font-family: '宋体';
                         font-weight: bold;
