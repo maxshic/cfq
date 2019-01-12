@@ -8,7 +8,7 @@
                 <img class="start-bg" @click="again" width="40%" src="../assets/again.png" alt="">
                 <div class="num-con">
                     <p class="top">清风扬的福气值为</p>
-                    <p class="middle">99</p>
+                    <p class="middle">{{value}}</p>
                     <p class="bottom">点击福袋试试手气</p>
                 </div>
                 <p class="desc">福气那么旺，快让大家沾沾你的福气<br>
@@ -23,6 +23,8 @@
     </div>
 </template>
 <script>
+import request from '@/utils/request'
+import wx from 'weixin-js-sdk'
 export default {
     name: 'Result',
     data(){
@@ -30,7 +32,15 @@ export default {
             showbg: false,
             per: 0.532635987885885,
             share: false,
+            value: 80+Math.floor(Math.random()*(100-80))
         }
+    },
+    created(){
+        request.post('GetNickName').then(res => {
+            alert(JSON.stringify(res))
+        }).catch(err => {
+            alert(JSON.stringify(err))
+        })
     },
     mounted(){
         let imgContainer = document.getElementById('rimgContainer')
@@ -45,11 +55,66 @@ export default {
             document.getElementById('rshowbg').style.width = conwidth + 'px'
             this.showbg = true
         }
+
+
+
+        wx.ready(() => {
+            wx.onMenuShareAppMessage({
+                title: "测福气", // 分享标题
+                desc: "hahahahahahahahah！", // 分享描述
+                link: "http://cx.shhuiya.com/CefuApi/BindUserPage1?shareid=1", // 分享链接
+                imgUrl: "https://cx.shhuiya.com/audio/sharepig.png", // 分享图标
+                type: "", // 分享类型,music、video或link，不填默认为link
+                dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
+                success: this.successShare
+            });
+            wx.onMenuShareTimeline({
+                title: "测福气", // 分享标题
+                link: "http://cx.shhuiya.com/CefuApi/BindUserPage1?shareid=1", // 分享链接
+                imgUrl: "https://cx.shhuiya.com/audio/sharepig.png", // 分享图标
+                success: this.successShare
+            });
+        });
+        this.myShare();
     },
     methods: {
         again(){
             this.$router.replace('/begin')
-        }
+        },
+        successShare() {
+            //分享成功的接口
+            alert(213455)
+            // $request.post("AddShare", {}).then(res => {
+            //     //alert(JSON.stringify(res));
+            //     location.href = 'http://cx.shhuiya.com/CefuApi/BindUserPage'
+            // });
+        },
+        myShare() {
+            const url = location.href.split("#")[0];
+            $request
+                .post(
+                    "ConfigParams",
+                    JSON.stringify({ url: location.href.split("#")[0] })
+                )
+                .then(res => {
+                    const data = {
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+
+                        appId: res.param.appId, // 必填，公众号的唯一标识
+                        timestamp: res.param.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: res.param.nonceStr, // 必填，生成签名的随机串
+                        signature: res.param.signature, // 必填，签名，见附录1
+                        jsApiList: [
+                            "onMenuShareAppMessage",
+                            "onMenuShareTimeline"
+                        ]
+                        // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    };
+                    //接口入住权限验证配置
+                    wx.config(data);
+                })
+                .catch(res => {});
+        },
     }
 }
 </script>
@@ -84,17 +149,17 @@ export default {
                     top: 29%;
                     text-align: center;
                     .top{
-                        font-size: 24px;
+                        font-size: r(14px);
                         font-weight: bold;
                         font-family: '宋体';
                     }
                     .middle{
-                        font-size: 40px;
+                        font-size: r(40px);
                         font-weight: bold;
                         color: #2c9d46;
                     }
                     .bottom{
-                        font-size: 20px;
+                        font-size: r(12px);
                         color: #2c9d46;
                     }
                 }
@@ -103,7 +168,7 @@ export default {
                     line-height: 1.5;
                     position: absolute;
                     bottom: 23%;
-                    font-size: 14px;
+                    font-size: r(10px);
                     font-weight: bold;
                     text-align: center;
                 }

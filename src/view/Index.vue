@@ -12,6 +12,7 @@
     </div>
 </template>
 <script>
+import request from '@/utils/request'
 export default {
     name: 'Index',
     data(){
@@ -19,6 +20,11 @@ export default {
             showbg: false,
             per: 0.532635987885885
         }
+    },
+    created(){
+        alert(location.href)
+        alert(this.$route.query.openid)
+        request.post('SaveOpenid' ,{openid: this.$route.query.openid}).catch(err => {alert(JSON.stringify(err))})
     },
     mounted(){
         let imgContainer = document.getElementById('imgContainer')

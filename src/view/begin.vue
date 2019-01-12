@@ -4,10 +4,11 @@
           
             <div class="img-con">
                 <img id="bshowbg" v-show="showbg" class="bg" src="../assets/chuiqi.png" alt="">
-                <img class="people" width="70%" src="../assets/deng.gif" alt="">
+                <img class="people" width="70%" :src="dengsrc" alt="">
                 <p class="timer">{{time}}s</p>
-                <img class="bouble" src="../assets/bouble.gif" alt="">
-                <img class="start-bg" @touchstart="start" @touchend="end" width="30%" src="../assets/longpress.gif" alt="">
+                <img class="bouble" :src="boublesrc" alt="">
+                <div @touchstart="start" @touchend="end" class="start-con"></div>
+                <!-- <img class="start-bg" @touchstart="start" @touchend="end" width="30%" src="../assets/longpress.gif" alt=""> -->
             </div>
             
         </div>
@@ -20,8 +21,10 @@ export default {
         return{
             showbg: false,
             per: 0.532635987885885,
-            time: 5,
-            timer: null
+            time: 3,
+            timer: null,
+            boublesrc: '',
+            dengsrc: require('../assets/dengstatic.png'),
         }
     },
     mounted(){
@@ -42,24 +45,30 @@ export default {
         start(){
             console.log(123)
             clearInterval(this.timer)
+            this.boublesrc = require('../assets/bouble.gif')
+            this.dengsrc = require('../assets/deng.gif')
+            this.time--
             this.timer = setInterval(() => {
                 this.time--
                 if(this.time <= 0){
                     clearInterval(this.timer)
-                    this.time = 5
+                    this.time = 3
+                    this.boublesrc = ''
+                    this.dengsrc = require('../assets/dengstatic.png')
                     this.$router.replace('/result')
-                    
                 }
             },1000)
         },
         end(){
-            console.log(1235)
             clearInterval(this.timer)
             
             if(this.time <= 0){
+                this.boublesrc = ''
                 this.$router.replace('/result')
             }
-            this.time = 5
+            this.boublesrc = ''
+            this.dengsrc = require('../assets/dengstatic.png')
+            this.time = 3
         }
     }
 }
@@ -88,6 +97,7 @@ export default {
                     top: 18%;
                     left: 50%;
                     transform: translateX(-50%);
+                    z-index: 99;
                 }
                 .timer{
                     position: absolute;
@@ -97,12 +107,19 @@ export default {
                     font-style: italic;
                     text-align: center;
                     color: #2c9d46;
+                    z-index: 99;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
                 }
                 .bouble{
                     position: absolute;
-                    bottom: 0;
+                    width: 90%;
+                    bottom: 10%;
                     left: 50%;
                     transform: translateX(-50%);
+                    z-index: 9;
                 }
             }
             .bg{
@@ -110,6 +127,20 @@ export default {
                 margin: 0;
                 // position: absolute;
                 // @include centerAll;
+            }
+            .start-con{
+                position: absolute;
+                width: 32%;
+                height: 12%;
+                // background-color: red;
+                background-image: url(../assets/longpress.gif);
+                background-size: 100% auto;
+                background-repeat: no-repeat;
+                background-position: center center;
+                left: 50%;
+                bottom: 12%;
+                transform: translateX(-50%);
+                z-index: 9;
             }
             .start-bg{
                 position: absolute;

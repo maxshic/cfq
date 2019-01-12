@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <div id="rimgContainer" class="img-container">
+        <div id="gimgContainer" class="img-container">
           
             <div class="img-con">
-                <img id="rshowbg" v-show="showbg" class="bg" src="../assets/jiangpin.png" alt="">
+                <img id="gshowbg" v-show="showbg" class="bg" src="../assets/jiangpin.png" alt="">
                 
                 
                 <div class="btn-group">
@@ -39,6 +39,7 @@
     </div>
 </template>
 <script>
+import request from '@/utils/request'
 export default {
     name: 'Gift',
     data(){
@@ -48,17 +49,29 @@ export default {
             hasBag: true,
         }
     },
+    created(){
+        alert(location.href)
+        alert(this.$route.query.openid)
+        request.post('SaveOpenid' ,{openid: this.$route.query.openid}).then(res => {
+            request.post('GetNickName').then(res => {
+                alert(JSON.stringify(res))
+            }).catch(err => {
+                alert(JSON.stringify(err))
+            })
+        }).catch(err => {alert(JSON.stringify(err))})
+        
+    },
     mounted(){
-        let imgContainer = document.getElementById('rimgContainer')
+        let imgContainer = document.getElementById('gimgContainer')
 
         let conwidth = window.getComputedStyle(imgContainer).width.split('px')[0]
         let conheight = window.getComputedStyle(imgContainer).height.split('px')[0]
         //let per = conwidth/conheight
         if((conwidth/conheight) > this.per){
-            document.getElementById('rshowbg').style.height = conheight + 'px'
+            document.getElementById('gshowbg').style.height = conheight + 'px'
             this.showbg = true
         }else{
-            document.getElementById('rshowbg').style.width = conwidth + 'px'
+            document.getElementById('gshowbg').style.width = conwidth + 'px'
             this.showbg = true
         }
     },
@@ -105,7 +118,7 @@ export default {
                     transform: translateX(-50%);
                     text-align: center;
                     p{
-                        font-size: 20px;
+                        font-size: r(14px);
                         font-weight: bold;
                         font-family: '宋体';
                         color: #010003;
@@ -118,7 +131,7 @@ export default {
                     top: 28%;
                     text-align: center;
                     .top{
-                        font-size: 16px;
+                        font-size: r(14px);
                         font-weight: bold;
                         font-family: '宋体';
                         color: #010003;
@@ -128,21 +141,21 @@ export default {
                         }
                     }
                     .bottom{
-                        font-size: 20px;
+                        font-size: r(16px);
                         color: #010003;
                         font-family: '宋体';
                         font-weight: bold;
                     }
                 }
-                .desc{
-                    width: 100%;
-                    line-height: 1.5;
-                    position: absolute;
-                    bottom: 30%;
-                    font-size: 14px;
-                    font-weight: bold;
-                    text-align: center;
-                }
+                // .desc{
+                //     width: 100%;
+                //     line-height: 1.5;
+                //     position: absolute;
+                //     bottom: 30%;
+                //     font-size: 14px;
+                //     font-weight: bold;
+                //     text-align: center;
+                // }
                 .btn-group{
                     width: 70%;
                     position: absolute;
