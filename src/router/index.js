@@ -27,5 +27,9 @@ export default new Router({
         path: '/gift',
         name: 'Gift',
         component:() => import('@/view/gift'),
+    },{
+        path: '/addInfo',
+        name: 'AddInfo',
+        component:() => import('@/view/addInfo'),
     }]
 })
