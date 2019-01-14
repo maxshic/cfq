@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+import $request from "@/utils/request";
 export default {
   name: "AddInfo",
   data() {
@@ -64,7 +65,26 @@ export default {
         this.flag = true;
         return alert("请填写地址");
       }
-      alert("匹配成功");
+      const data = {
+        Name: name,
+        Phone: tell,
+        Site: address,
+        PrizeId: this.$route.query.prizeId
+      };
+      $request
+        .post("/cefuapi/PostAddress", data)
+        .then(res => {
+          if (!res.res) {
+            this.flag = true;
+            alert("提交失败");
+          } else {
+            this.$route.back(-1);
+          }
+        })
+        .catch(err => {
+          this.flag = true;
+          alert("提交失败");
+        });
     }
   }
 };
