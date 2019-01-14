@@ -45,7 +45,7 @@ export default {
         //     alert(JSON.stringify(err))
         // })
         //昵称
-        request.post('GetNickName').then(res => {
+        request.post('/CefuqiAPi/GetNickName').then(res => {
             //alert(JSON.stringify(res))
             if(res.res){
                 this.nickname = res.nickname
@@ -54,12 +54,12 @@ export default {
             alert(JSON.stringify(err))
         })
         //次数
-        request.post('getawarddes').then(res => {
+        request.post('/CefuqiAPi/getawarddes').then(res => {
             //alert(JSON.stringify(res))
             if(res.res){
                 // this.$router.replace('/begin')
                 this.value = 80+Math.floor(Math.random()*(100-80))
-                request.post('Addfu' ,{Goodvalue: this.value}).then(res => {
+                request.post('/CefuqiAPi/Addfu' ,{Goodvalue: this.value}).then(res => {
                     //alert(JSON.stringify(res))
                 }).catch(err => {
                     alert(JSON.stringify(err))
@@ -68,13 +68,15 @@ export default {
                 //alert('抽奖次数已用完')
                 this.value = res.goodvalue
             }
-        }).catch(err => {alert('抽奖次数已用完!')})
+        }).catch(err => {alert('测试次数已用完!')})
         //添加分享
-        request.post("AddShare", {}).then(res => {
-            alert(JSON.stringify(res));
+        request.post("/CefuqiAPi/AddShare", {}).then(res => {
+            //alert('AddShare'+JSON.stringify(res));
             if(res.res){
                 this.shareid = res.shareid
             }
+        }).catch(err => {
+            //alert('AddShareerr'+JSON.stringify(err))
         });
         
     },
@@ -97,9 +99,9 @@ export default {
         wx.ready(() => {
             wx.onMenuShareAppMessage({
                 title: "测福气", // 分享标题
-                desc: "hahahahahahahahah！", // 分享描述
+                desc: "测福气！", // 分享描述
                 link: "http://cx.shhuiya.com/CefuApi/BindUserPage1?shareid="+this.shareid, // 分享链接
-                imgUrl: "https://cx.shhuiya.com/audio/sharepig.png", // 分享图标
+                imgUrl: "https://cx.shhuiya.com/cfq/audio/share.jpg", // 分享图标
                 type: "", // 分享类型,music、video或link，不填默认为link
                 dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
                 success: this.successShare,
@@ -107,7 +109,7 @@ export default {
             wx.onMenuShareTimeline({
                 title: "测福气", // 分享标题
                 link: "http://cx.shhuiya.com/CefuApi/BindUserPage1?shareid="+this.shareid, // 分享链接
-                imgUrl: "https://cx.shhuiya.com/audio/sharepig.png", // 分享图标
+                imgUrl: "https://cx.shhuiya.com/cfq/audio/share.jpg", // 分享图标
                 success: this.successShare,
             });
         });
@@ -115,7 +117,7 @@ export default {
     },
     methods: {
         again(){
-            request.post('getawarddes').then(res => {
+            request.post('/CefuqiAPi/getawarddes').then(res => {
                 //alert(JSON.stringify(res))
                 if(res.res){
                     this.$router.replace('/begin')
@@ -127,7 +129,7 @@ export default {
         },
         successShare() {
             //分享成功的接口
-            alert(213455)
+            //alert(213455)
             // $request.post("AddShare", {}).then(res => {
             //     //alert(JSON.stringify(res));
             //     location.href = 'http://cx.shhuiya.com/CefuApi/BindUserPage'
@@ -135,16 +137,16 @@ export default {
         },
         myShare() {
             const url = location.href.split("#")[0];
-            alert(JSON.stringify({ url: location.href.split("#")[0] }))
+            //alert(JSON.stringify({ url: location.href.split("#")[0] }))
             request
                 .post(
-                    "ConfigParams",
-                    JSON.stringify({ url: location.href.split("#")[0] })
+                    "/CefuAPi/ConfigParams",
+                    { url: location.href.split("#")[0] }
                 )
                 .then(res => {
-                    alert(JSON.stringify(res))
+                    //alert(JSON.stringify(res))
                     const data = {
-                        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 
                         appId: res.param.appId, // 必填，公众号的唯一标识
                         timestamp: res.param.timestamp, // 必填，生成签名的时间戳

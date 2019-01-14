@@ -72,13 +72,16 @@ export default {
         PrizeId: this.$route.query.prizeId
       };
       $request
-        .post("/cefuapi/PostAddress", data)
+        .post("/CefuqiAPi/PostAddress", data)
         .then(res => {
           if (!res.res) {
             this.flag = true;
             alert("提交失败");
           } else {
-            this.$route.back(-1);
+            this.$router.replace({
+                path: '/gift',
+                shareid: this.$route.query.shareid
+            })
           }
         })
         .catch(err => {

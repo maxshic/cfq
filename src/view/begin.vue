@@ -28,6 +28,22 @@ export default {
             denggif: require('../assets/deng.gif')
         }
     },
+    created(){
+        window.onresize = () => {
+            let imgContainer = document.getElementById('bimgContainer')
+
+            let conwidth = window.getComputedStyle(imgContainer).width.split('px')[0]
+            let conheight = window.getComputedStyle(imgContainer).height.split('px')[0]
+            //let per = conwidth/conheight
+            if((conwidth/conheight) > this.per){
+                document.getElementById('bshowbg').style.height = conheight + 'px'
+                this.showbg = true
+            }else{
+                document.getElementById('bshowbg').style.width = conwidth + 'px'
+                this.showbg = true
+            }
+        }
+    },
     mounted(){
         let imgContainer = document.getElementById('bimgContainer')
 

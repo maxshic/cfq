@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <img :src="denggif" alt="" style="transform: translateY(10000px);">
         <div class="music-bg" @click="switchbg">
             <img v-if="switcha" class="round-music" src="./assets/yinyueon.png" width="100%" alt="">
             <img v-else src="./assets/yinyueoff.png" width="100%" alt="">
@@ -45,6 +46,7 @@ export default {
     background-image: url(./assets/beijing.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    overflow: hidden;
     .music-bg{
         position: fixed;
         width: 40px;

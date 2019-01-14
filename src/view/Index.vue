@@ -24,9 +24,9 @@ export default {
     created(){
         //alert(location.href)
         //alert(this.$route.query.openid)
-        request.post('SaveOpenid' ,{openid: this.$route.query.openid}).then(() => {
+        request.post('/CefuqiAPi/SaveOpenid' ,{openid: this.$route.query.openid}).then(() => {
             //测试次数
-            request.post('getawarddes').then(res => {
+            request.post('/CefuqiAPi/getawarddes').then(res => {
                 //alert(JSON.stringify(res))
                 if(res.res){
                     //this.$router.push('/begin');
@@ -57,14 +57,14 @@ export default {
     methods:{
         toBegin(){
             //this.$router.push('/begin');
-            request.post('getawarddes').then(res => {
+            request.post('/CefuqiAPi/getawarddes').then(res => {
                 //alert(JSON.stringify(res))
                 if(res.res){
                     this.$router.push('/begin');
                 }else{
-                    alert('抽奖次数已用完')
+                    alert('测试次数已用完')
                 }
-            }).catch(err => {alert('抽奖次数已用完!')})
+            }).catch(err => {alert('测试次数已用完!')})
         }
     }
 }

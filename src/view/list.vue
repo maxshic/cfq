@@ -6,7 +6,7 @@
         <img class="look-title" src="../assets/look.png" alt>
         <div class="look-box">
           <div class="look-list" v-for="(item, index) in list" :key="index">
-            <img class="look-photo" :src="item.Photo" alt>
+            <img class="look-photo" :src="item.photo" alt>
             <div class="name">
               <span>{{item.NickName | filterName}}</span>
               <img v-if="item.PrizesId === 1" src="../assets/best.png" alt>
@@ -43,7 +43,23 @@ export default {
       document.getElementById("listshowbg").style.width = conwidth + "px";
       this.showbg = true;
     }
+
     this.getList();
+  },
+  created(){
+      window.onresize = () => {
+        let imgContainer = document.getElementById("listimgContainer");
+        let conwidth = window.getComputedStyle(imgContainer).width.split("px")[0];
+        let conheight = window.getComputedStyle(imgContainer).height.split("px")[0];
+        //let per = conwidth/conheight
+        if (conwidth / conheight > this.per) {
+        document.getElementById("listshowbg").style.height = conheight + "px";
+        this.showbg = true;
+        } else {
+        document.getElementById("listshowbg").style.width = conwidth + "px";
+        this.showbg = true;
+        }
+      }
   },
   filters: {
     filterName(str) {
@@ -96,7 +112,7 @@ export default {
   methods: {
     getList() {
       //获取列表
-      $request.post("ShareList", { shareid: this.$route.query.shareid }).then(res => {
+      $request.post("/CefuqiAPi/ShareList", { shareid: this.$route.query.shareid }).then(res => {
         if (res.res) {
           this.list = res.list;
         }
@@ -155,7 +171,7 @@ export default {
             border: 1px solid #373034;
           }
           .name {
-            width: 49%;
+            width: 45%;
             position: relative;
             top: 0;
             left: 0;
@@ -170,9 +186,12 @@ export default {
           }
           .ing {
             text-shadow: 0 0 2px #ebcd30, 0 0 2px #ebcd30;
+            // span{
+            //     display: inline;
+            // }
           }
           span {
-            transform: scale(0.8);
+            transform: scale(0.7);
             display: inline-block;
           }
         }

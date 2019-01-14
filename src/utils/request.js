@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // axios.defaults.withCredentials = true
 const service = axios.create({
-    baseURL: 'https://cq.shhuiya.com/CefuqiAPi',
+    baseURL: 'https://cx.shhuiya.com',
     withCredentials: false,
     crossDomain: true
     //timeout: 5000
