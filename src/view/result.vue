@@ -7,7 +7,7 @@
                 <img class="dai" @click="share = true" width="70%" src="../assets/dai.gif" alt="">
                 <img class="start-bg" @click="again" width="40%" src="../assets/again.png" alt="">
                 <div class="num-con">
-                    <p class="top">清风扬的福气值为</p>
+                    <p class="top">{{nickname}}的福气值为</p>
                     <p class="middle">{{value}}</p>
                     <p class="bottom">点击福袋试试手气</p>
                 </div>
@@ -32,15 +32,25 @@ export default {
             showbg: false,
             per: 0.532635987885885,
             share: false,
-            value: 80+Math.floor(Math.random()*(100-80))
+            value: 80+Math.floor(Math.random()*(100-80)),
+            nickname: ''
         }
     },
     created(){
-        request.post('GetNickName').then(res => {
+        request.post('Addfu' ,{Goodvalue: this.value}).then(res => {
             alert(JSON.stringify(res))
         }).catch(err => {
             alert(JSON.stringify(err))
         })
+        request.post('GetNickName').then(res => {
+            alert(JSON.stringify(res))
+            if(res.res){
+                this.nickname = res.nickname
+            }
+        }).catch(err => {
+            alert(JSON.stringify(err))
+        })
+        
     },
     mounted(){
         let imgContainer = document.getElementById('rimgContainer')
@@ -66,7 +76,8 @@ export default {
                 imgUrl: "https://cx.shhuiya.com/audio/sharepig.png", // 分享图标
                 type: "", // 分享类型,music、video或link，不填默认为link
                 dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
-                success: this.successShare
+                success: this.successShare,
+                
             });
             wx.onMenuShareTimeline({
                 title: "测福气", // 分享标题
@@ -76,6 +87,8 @@ export default {
             });
         });
         this.myShare();
+
+        
     },
     methods: {
         again(){
@@ -113,7 +126,9 @@ export default {
                     //接口入住权限验证配置
                     wx.config(data);
                 })
-                .catch(res => {});
+                .catch(err => {
+                    alert('err' ,JSON.stringify(err))
+                });
         },
     }
 }

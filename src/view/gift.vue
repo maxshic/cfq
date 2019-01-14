@@ -13,7 +13,7 @@
                 
                 <template v-if="hasBag">
                     <div class="num-con">
-                        <p class="top">清风扬的<span>五芳福袋</span></p>
+                        <p class="top">{{nickname}}的<span>五芳福袋</span></p>
                         <p class="bottom">恭喜获得</p>
                     </div>
                     <!-- <img @click="getBag('20')" class="dai" width="55%" src="../assets/20.png" alt=""> -->
@@ -27,7 +27,7 @@
                     <!-- <img @click="getBag('ds')" class="dai" width="55%" src="../assets/ds.png" alt=""> -->
                     <img @click="getBag('xc')" class="dai" width="55%" src="../assets/xc.png" alt="">
                 </template>
-                <template v-else>
+                <template v-else-if="result == 0">
                     <div class="nobag">
                         <p>手速太慢</p>
                         <p>福袋已被抢完</p>
@@ -47,14 +47,35 @@ export default {
             showbg: false,
             per: 0.532635987885885,
             hasBag: true,
+            nickname: '',
+            result: 0,
+            again: false,
         }
     },
     created(){
-        alert(location.href)
-        alert(this.$route.query.openid)
+        //alert(location.href)
+        //alert(this.$route.query.openid)
+        alert(this.$route.query.shareid)
+        //获取昵称
         request.post('SaveOpenid' ,{openid: this.$route.query.openid}).then(res => {
             request.post('GetNickName').then(res => {
                 alert(JSON.stringify(res))
+                if(res.res){
+                    this.nickname = res.nickname
+                }
+                //获取奖品
+                request.post('GetResult',{shareid:this.$route.query.shareid}).then(res => {
+                    alert(JSON.stringify(res))
+                    if(res.res){
+                        this.result = res.result
+                    }else if(res.errtype == 3){
+                        this.again = true
+                        this.result = res.result
+                    }
+                }).catch(err => {
+                    alert(JSON.stringify(err))
+                })
+
             }).catch(err => {
                 alert(JSON.stringify(err))
             })

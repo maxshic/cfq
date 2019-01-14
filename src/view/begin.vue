@@ -25,6 +25,7 @@ export default {
             timer: null,
             boublesrc: '',
             dengsrc: require('../assets/dengstatic.png'),
+            denggif: require('../assets/deng.gif')
         }
     },
     mounted(){
@@ -46,7 +47,7 @@ export default {
             console.log(123)
             clearInterval(this.timer)
             this.boublesrc = require('../assets/bouble.gif')
-            this.dengsrc = require('../assets/deng.gif')
+            this.dengsrc = this.denggif
             this.time--
             this.timer = setInterval(() => {
                 this.time--

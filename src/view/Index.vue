@@ -24,7 +24,14 @@ export default {
     created(){
         alert(location.href)
         alert(this.$route.query.openid)
-        request.post('SaveOpenid' ,{openid: this.$route.query.openid}).catch(err => {alert(JSON.stringify(err))})
+        request.post('SaveOpenid' ,{openid: this.$route.query.openid}).then(() => {
+            request.post('getawarddes').then(res => {
+                alert(JSON.stringify(res))
+            }).catch()
+        }).catch(err => {alert(JSON.stringify(err))})
+
+        //
+        
     },
     mounted(){
         let imgContainer = document.getElementById('imgContainer')
