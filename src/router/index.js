@@ -31,5 +31,9 @@ export default new Router({
         path: '/addInfo',
         name: 'AddInfo',
         component:() => import('@/view/addInfo'),
+    },{
+        path: '/list',
+        name: 'List',
+        component:() => import('@/view/List'),
     }]
 })
