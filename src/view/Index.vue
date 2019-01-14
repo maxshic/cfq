@@ -25,6 +25,7 @@ export default {
         alert(location.href)
         alert(this.$route.query.openid)
         request.post('SaveOpenid' ,{openid: this.$route.query.openid}).then(() => {
+            //测试次数
             request.post('getawarddes').then(res => {
                 alert(JSON.stringify(res))
             }).catch()
