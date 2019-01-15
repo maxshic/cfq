@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <img class="flower" src="../assets/huawen.png" alt="">
         <div id="gimgContainer" class="img-container">
           
             <div class="img-con">
@@ -304,6 +305,7 @@ export default {
             width: 90%;
             height: 95%;
             position: absolute;
+            z-index: 1;
             @include centerAll;
             .img-con{
                 position: absolute;

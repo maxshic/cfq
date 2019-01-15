@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <img class="flower" src="../assets/huawen.png" alt="">
         <div id="imgContainer" class="img-container">
           
             <div id="imgCon" class="img-con">
@@ -77,11 +78,11 @@ export default {
         top: 0;
         bottom: 0;
         left: 0;
-
         .img-container{
             width: 90%;
             height: 95%;
             position: absolute;
+            z-index: 2;
             @include centerAll;
             .img-con{
                 position: absolute;

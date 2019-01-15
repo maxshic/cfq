@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+      <img class="flower" src="../assets/huawen.png" alt="">
     <div id="addimgContainer" class="img-container">
       <div class="img-con">
         <img id="addshowbg" v-show="showbg" class="bg" src="../assets/jiangpin.png" alt>
@@ -105,6 +106,7 @@ export default {
     width: 90%;
     height: 95%;
     position: absolute;
+    z-index: 1;
     @include centerAll;
     .img-con {
       position: absolute;

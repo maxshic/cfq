@@ -1,8 +1,9 @@
 <template>
   <div class="container">
+      <img class="flower" src="../assets/huawen.png" alt="">
     <div id="listimgContainer" class="img-container">
       <div class="img-con">
-        <img id="listshowbg" v-show="showbg" class="bg" src="../assets/jiangpin.png" alt>
+        <img id="listshowbg" v-show="showbg" class="bg" src="../assets/noflower.png" alt>
         <img class="look-title" src="../assets/look.png" alt>
         <div class="look-box">
           <div class="look-list" v-for="(item, index) in list" :key="index">
@@ -134,6 +135,7 @@ export default {
     width: 90%;
     height: 95%;
     position: absolute;
+    z-index: 1;
     @include centerAll;
     .img-con {
       position: absolute;

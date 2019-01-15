@@ -14,7 +14,7 @@ export default {
     name: "App",
     data(){
         return{
-            denggif: require('./assets/deng.gif'),
+            denggif: require('./assets/deng2.gif'),
             switcha: true,
         }
     },
