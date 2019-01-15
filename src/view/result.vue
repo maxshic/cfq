@@ -99,7 +99,7 @@ export default {
         wx.ready(() => {
             wx.onMenuShareAppMessage({
                 title: "测福气", // 分享标题
-                desc: "测福气！", // 分享描述
+                desc: "发福袋了，大家快来沾沾福气！", // 分享描述
                 link: "http://cx.shhuiya.com/CefuApi/BindUserPage1?shareid="+this.shareid, // 分享链接
                 imgUrl: "https://cx.shhuiya.com/cfq/audio/share.jpg", // 分享图标
                 type: "", // 分享类型,music、video或link，不填默认为link
@@ -122,9 +122,9 @@ export default {
                 if(res.res){
                     this.$router.replace('/begin')
                 }else{
-                    alert('抽奖次数已用完')
+                    alert('测试次数已用完')
                 }
-            }).catch(err => {alert('抽奖次数已用完!')})
+            }).catch(err => {alert('测试次数已用完!')})
             
         },
         successShare() {
