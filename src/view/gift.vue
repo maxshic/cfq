@@ -170,11 +170,11 @@ export default {
             }
             if(str == '50'){
                 this.showtmall = true
-                this.tao = '【优惠券】惠券】https://m.tb.cn/h.3sbLIHO?sm=1013e2 点击链 点击链接，再选择浏览器咑閞；或復·制这段描述￥FAPWbJTfaAD￥后咑閞淘♂寳♀[来自超级会员的分享]'
+                this.tao = '【优惠券】惠券】https://m.tb.cn/h.3Hzq7oq?sm=11bc32 点击链 点击链接，再选择浏览器咑閞；或復·制这段描述￥KlHObrM7onj￥后咑閞淘寳[来自超级会员的分享]'
             }
             if(str == '100'){
                 this.showtmall = true
-                this.tao = '【优惠券】惠券】https://m.tb.cn/h.3sItnaC?sm=e2d879 点击链 点击链接，再选择浏览器咑閞；或復·制这段描述￥K00kbJTUQEe￥后咑閞淘♂寳♀[来自超级会员的分享]'
+                this.tao = '【优惠券】惠券】https://m.tb.cn/h.3HgiTt8?sm=aed4f0 点击链 点击链接，再选择浏览器咑閞；或復·制这段描述￥tjv2brMi4L4￥后咑閞淘寳[来自超级会员的分享]'
             }
             if(str == '199-100'){
                 this.showtmall = true
