@@ -11,7 +11,7 @@
                     <p class="bottom">点击福袋试试手气</p>
                 </div>
                 <p class="desc">福气那么旺，快让大家沾沾你的福气
-                    <br>福袋内含8份惊喜大奖，分享即可开福袋
+                    <!-- <br>福袋内含8份惊喜大奖，分享即可开福袋 -->
                 </p>
                 <img class="saveImage" :src="imageSrc" alt>
                 <img class="dai" @click="share = true" width="70%" src="../assets/dai.gif" alt>
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="share-bg-box" v-show="share" @click="share = false">
-            <img src="../assets/share.png" width="75%" alt>
+            <img src="../assets/share_03.png" width="75%" alt>
         </div>
         <create-img :nickname="nickname" :value="value" @successCreateImg="successCreateImg"></create-img>
     </div>
@@ -113,7 +113,7 @@ export default {
                 link:
                     "http://cx.shhuiya.com/CefuApi/BindUserPage1?shareid=" +
                     this.shareid, // 分享链接
-                imgUrl: "https://cx.shhuiya.com/cfq/audio/share.jpg", // 分享图标
+                imgUrl: "https://cx.shhuiya.com/cfq/cfq/audio/share.jpg", // 分享图标
                 type: "", // 分享类型,music、video或link，不填默认为link
                 dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
                 success: this.successShare
@@ -123,7 +123,7 @@ export default {
                 link:
                     "http://cx.shhuiya.com/CefuApi/BindUserPage1?shareid=" +
                     this.shareid, // 分享链接
-                imgUrl: "https://cx.shhuiya.com/cfq/audio/share.jpg", // 分享图标
+                imgUrl: "https://cx.shhuiya.com/cfq/cfq/audio/share.jpg", // 分享图标
                 success: this.successShare
             });
         });

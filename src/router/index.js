@@ -5,7 +5,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-    base: '/cfq/',
+    base: '/cfq/cfq/',
     routes: [{
         path: '/',
         name: 'Index',
