@@ -11,8 +11,8 @@
                     <p class="middle">{{value}}</p>
                     <p class="bottom">点击福袋试试手气</p>
                 </div>
-                <p class="desc">福气那么旺，快让大家沾沾你的福气
-                    <br>福袋内含8份惊喜大奖，分享即可开福袋
+                <p class="desc">爱播撒福气的人，运气都不会太差呦！
+                    <!-- <br>福袋内含8份惊喜大奖，分享即可开福袋 -->
                 </p>
                 <div class="code-box">
                     <img class="codeimage" src="../assets/code.png" alt>
